@@ -14,5 +14,14 @@ namespace MyListTests
             int actualLength = emptyList.Count;
             Assert.AreEqual(expectedLength, actualLength);
         }
+        [TestMethod]
+        public void AddLast_AddElementAtEndList_ElementAtEnd()
+        {
+            List list = new List();
+            char element = 'e';
+            list.AddLast(element);
+            char lastElement = list.Tail.Data;
+            Assert.AreEqual(element, lastElement);
+        }
     }
 }
