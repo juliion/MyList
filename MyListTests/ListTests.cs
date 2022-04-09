@@ -23,5 +23,19 @@ namespace MyListTests
             char lastElement = list.Tail.Data;
             Assert.AreEqual(element, lastElement);
         }
+        [TestMethod]
+        public void Count_LengthAfterAddingThreeElements_3()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'r';
+            char thirdElement = 't';
+            int expectedLength = 3;
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            int actualLength = list.Count;
+            Assert.AreEqual(expectedLength, actualLength);
+        }
     }
 }
