@@ -37,5 +37,17 @@ namespace MyListTests
             int actualLength = list.Count;
             Assert.AreEqual(expectedLength, actualLength);
         }
+        [TestMethod]
+        public void Get_GetElementAtIndexOne_CorrectlyGottenElement()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'r';
+            int ind = 1;
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            char gottenSecondElement = list.Get(ind);
+            Assert.AreEqual(secondElement, gottenSecondElement);
+        }
     }
 }
