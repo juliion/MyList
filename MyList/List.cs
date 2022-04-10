@@ -68,5 +68,16 @@ namespace MyList
                 Count++;
             }
         }
+        public char Get(int ind)
+        {
+            int i = 0;
+            var target = Head;
+            while (i != ind)
+            {
+                target = target.Next;
+                i++;
+            }
+            return target.Data;
+        }
     }
 }
