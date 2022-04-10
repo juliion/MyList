@@ -64,5 +64,20 @@ namespace MyListTests
             list.InsertAt(insElem, insInd);
             Assert.AreEqual(insElem, list.Get(insInd));
         }
+        [TestMethod]
+        public void InsertAt_InsertAtBegin_ElemInsertedAtIndexZero()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'r';
+            char thirdElement = 't';
+            char insElem = 'i';
+            int insInd = 0;
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            list.InsertAt(insElem, insInd);
+            Assert.AreEqual(insElem, list.Get(insInd));
+        }
     }
 }
