@@ -49,5 +49,20 @@ namespace MyListTests
             char gottenSecondElement = list.Get(ind);
             Assert.AreEqual(secondElement, gottenSecondElement);
         }
+        [TestMethod]
+        public void InsertAt_InsertInMiddle_ElemInsertedAtIndexInMiddle()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'r';
+            char thirdElement = 't';
+            char insElem = 'i';
+            int insInd = 1;
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            list.InsertAt(insElem, insInd);
+            Assert.AreEqual(insElem, list.Get(insInd));
+        }
     }
 }
