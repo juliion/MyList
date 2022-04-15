@@ -79,5 +79,30 @@ namespace MyList
             }
             return target.Data;
         }
+        public char RemoveAt(int ind)
+        {
+            int i = 0;
+            var del = Head;
+            while (i != ind)
+            {
+                del = del.Next;
+                i++;
+            }
+
+            var prevNode = del.Prev;
+            var nextNode = del.Next;
+
+            if (prevNode != null && Count != 1)
+                prevNode.Next = nextNode;
+            if (nextNode != null && Count != 1)
+                nextNode.Prev = prevNode;
+            if (ind == 0)
+                Head = nextNode;
+            if (ind == Count - 1)
+                Tail = prevNode;
+
+            Count--;
+            return del.Data;
+        }
     }
 }
