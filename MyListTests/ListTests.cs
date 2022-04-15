@@ -94,5 +94,75 @@ namespace MyListTests
             list.InsertAt(insElem, insInd);
             Assert.AreEqual(insElem, list.Get(insInd));
         }
+        [TestMethod]
+        public void RemoveAt_RemoveFromEnd_ReduceLengthReturnRemElem()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'r';
+            char thirdElement = 't';
+            int remInd = 2;
+            int expectedLength = 2;
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            char remElem = list.RemoveAt(remInd);
+            int actualLength = list.Count;
+            Assert.AreEqual(expectedLength, actualLength);
+            Assert.AreEqual(thirdElement, remElem);
+            Assert.AreEqual(firstElement, list.Get(0));
+            Assert.AreEqual(secondElement, list.Get(1));
+        }
+        [TestMethod]
+        public void RemoveAt_RemoveFromBegin_ReduceLengthReturnRemElem()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'r';
+            char thirdElement = 't';
+            int remInd = 0;
+            int expectedLength = 2;
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            char remElem = list.RemoveAt(remInd);
+            int actualLength = list.Count;
+            Assert.AreEqual(expectedLength, actualLength);
+            Assert.AreEqual(firstElement, remElem);
+            Assert.AreEqual(secondElement, list.Get(0));
+            Assert.AreEqual(thirdElement, list.Get(1));
+        }
+        [TestMethod]
+        public void RemoveAt_RemoveFromMiddle_ReduceLengthReturnRemElem()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'r';
+            char thirdElement = 't';
+            int remInd = 1;
+            int expectedLength = 2;
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            char remElem = list.RemoveAt(remInd);
+            int actualLength = list.Count;
+            Assert.AreEqual(expectedLength, actualLength);
+            Assert.AreEqual(secondElement, remElem);
+            Assert.AreEqual(firstElement, list.Get(0));
+            Assert.AreEqual(thirdElement, list.Get(1));
+        }
+        [TestMethod]
+        public void RemoveAt_RemoveFromListOfLength1_EmptyList()
+        {
+            List list = new List();
+            char element = 'e';
+            int remInd = 0;
+            int expectedLength = 0;
+            list.AddLast(element);
+            char remElem = list.RemoveAt(remInd);
+            int actualLength = list.Count;
+            Assert.AreEqual(expectedLength, actualLength);
+            Assert.AreEqual(element, remElem);
+        }
     }
 }
