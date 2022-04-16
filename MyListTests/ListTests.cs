@@ -164,5 +164,27 @@ namespace MyListTests
             Assert.AreEqual(expectedLength, actualLength);
             Assert.AreEqual(element, remElem);
         }
+        [TestMethod]
+        public void RemoveAll_RemoveAllEntriesElem_ReduceLengthRemElem()
+        {
+            List list = new List();
+            char firstElement = 't';
+            char secondElement = 'r';
+            char thirdElement = 't';
+            char fourthElement = 'j';
+            char fifthElement = 't';
+            char remCh = 't';
+            int expectedLength = 2;
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            list.AddLast(fourthElement);
+            list.AddLast(fifthElement);
+            list.RemoveAll(remCh);
+            int actualLength = list.Count;
+            Assert.AreEqual(expectedLength, actualLength);
+            Assert.AreEqual(secondElement, list.Get(0));
+            Assert.AreEqual(fourthElement, list.Get(1));
+        }
     }
 }
