@@ -119,5 +119,16 @@ namespace MyList
                 i++;
             }
         }
+        public List Clone()
+        {
+            List cloneList = new List();
+            var current = Head;
+            while (current != null)
+            {
+                cloneList.AddLast(current.Data);
+                current = current.Next;
+            }
+            return cloneList;
+        }
     }
 }
