@@ -130,5 +130,15 @@ namespace MyList
             }
             return cloneList;
         }
+        public void Reverse()
+        {
+            var current = Head;
+            for (int i = 0, j = Count - 1; i < j; i++)
+            {
+                char temp = Get(j);
+                RemoveAt(j);
+                InsertAt(temp, i);
+            }
+        }
     }
 }
