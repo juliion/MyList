@@ -244,5 +244,41 @@ namespace MyListTests
             int lengthClonedList = clonedList.Count;
             Assert.AreEqual(lengthList, lengthClonedList);
         }
+        [TestMethod]
+        public void Reverse_ReverseList_ChangedOrder()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'r';
+            char thirdElement = 't';
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            list.Reverse();
+            Assert.AreEqual(thirdElement, list.Get(0));
+            Assert.AreEqual(secondElement, list.Get(1));
+            Assert.AreEqual(firstElement, list.Get(2));
+        }
+        [TestMethod]
+        public void Reverse_ReverseEmptyList_EmptyList()
+        {
+            List list = new List();
+            int expectedLength = 0;
+            list.Reverse();
+            int actualLength = list.Count;
+            Assert.AreEqual(expectedLength, actualLength);
+        }
+        [TestMethod]
+        public void Reverse_ReverseListListOfLength1_NoChanges()
+        {
+            List list = new List();
+            char element = 'e';
+            list.AddLast(element);
+            int expectedLength = 1;
+            list.Reverse();
+            int actualLength = list.Count;
+            Assert.AreEqual(expectedLength, actualLength);
+            Assert.AreEqual(element, list.Get(0));
+        }
     }
 }
