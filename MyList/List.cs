@@ -104,19 +104,5 @@ namespace MyList
             Count--;
             return del.Data;
         }
-        public void RemoveAll(char data)
-        {
-            int i = 0;
-            var current = Head;
-            while (current != null)
-            {
-                if (current.Data == data)
-                { 
-                }
-                    RemoveAt(i);
-                current = current.Next;
-                i++;
-            }
-        }
     }
 }
