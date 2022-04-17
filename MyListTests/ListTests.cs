@@ -186,5 +186,36 @@ namespace MyListTests
             Assert.AreEqual(secondElement, list.Get(0));
             Assert.AreEqual(fourthElement, list.Get(1));
         }
+        [TestMethod]
+        public void RemoveAll_RemoveNotIncomingElem_NoChanges()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'r';
+            char thirdElement = 't';
+            char remCh = 'k';
+            int expectedLength = 3;
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            list.RemoveAll(remCh);
+            int actualLength = list.Count;
+            Assert.AreEqual(expectedLength, actualLength);
+            Assert.AreEqual(firstElement, list.Get(0));
+            Assert.AreEqual(secondElement, list.Get(1));
+            Assert.AreEqual(thirdElement, list.Get(2));
+        }
+        [TestMethod]
+        public void RemoveAll_RemoveFromListOfLength1_EmptyList()
+        {
+            List list = new List();
+            char element = 'e';
+            char remCh = 'e';
+            int expectedLength = 0;
+            list.AddLast(element);
+            list.RemoveAll(remCh);
+            int actualLength = list.Count;
+            Assert.AreEqual(expectedLength, actualLength);
+        }
     }
 }
