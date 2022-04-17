@@ -217,5 +217,32 @@ namespace MyListTests
             int actualLength = list.Count;
             Assert.AreEqual(expectedLength, actualLength);
         }
+        [TestMethod]
+        public void Clone_CloneList_ListCopiesCurrent()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'r';
+            char thirdElement = 't';
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            int lengthList = list.Count;
+            List clonedList = list.Clone();
+            int lengthClonedList = clonedList.Count;
+            Assert.AreEqual(lengthList, lengthClonedList);
+            Assert.AreEqual(list.Get(0), clonedList.Get(0));
+            Assert.AreEqual(list.Get(1), clonedList.Get(1));
+            Assert.AreEqual(list.Get(2), clonedList.Get(2));
+        }
+        [TestMethod]
+        public void Clone_CloneEmptyList_EmptyList()
+        {
+            List list = new List();
+            int lengthList = list.Count;
+            List clonedList = list.Clone();
+            int lengthClonedList = clonedList.Count;
+            Assert.AreEqual(lengthList, lengthClonedList);
+        }
     }
 }
