@@ -280,5 +280,39 @@ namespace MyListTests
             Assert.AreEqual(expectedLength, actualLength);
             Assert.AreEqual(element, list.Get(0));
         }
+        [TestMethod]
+        public void FindFirst_FindFirstEntryOfElem_ElemInd()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'e';
+            char thirdElement = 't';
+            char fourthElement = 'e';
+            char target = 'e';
+            int targetInd = 0;
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            list.AddLast(fourthElement);
+            int foundInd = list.FindFirst(target);
+            Assert.AreEqual(targetInd, foundInd);
+        }
+        [TestMethod]
+        public void FindFirst_FindNotIncludedElem_minus1()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'e';
+            char thirdElement = 't';
+            char fourthElement = 'e';
+            char target = 'l';
+            int targetInd = -1;
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            list.AddLast(fourthElement);
+            int foundInd = list.FindFirst(target);
+            Assert.AreEqual(targetInd, foundInd);
+        }
     }
 }
