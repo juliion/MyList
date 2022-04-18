@@ -140,5 +140,22 @@ namespace MyList
                 InsertAt(temp, i);
             }
         }
+        public int FindFirst(char target)
+        {
+            int targetInd = -1;
+            var current = Head;
+            int i = 0;
+            while (current != null)
+            {
+                if(Get(i) == target)
+                {
+                    targetInd = i;
+                    break;
+                }
+                current = current.Next;
+                i++;
+            }
+            return targetInd;
+        }
     }
 }
