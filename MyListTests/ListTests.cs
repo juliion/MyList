@@ -348,5 +348,29 @@ namespace MyListTests
             int foundInd = list.FindLast(target);
             Assert.AreEqual(targetInd, foundInd);
         }
+        [TestMethod]
+        public void Clear_ClearNotEmptyList_EmptyList()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'r';
+            char thirdElement = 't';
+            int targetLength = 0;
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            list.Clear();
+            int actualLength = list.Count;
+            Assert.AreEqual(targetLength, actualLength);
+        }
+        [TestMethod]
+        public void Clear_ClearEmptyList_EmptyList()
+        {
+            List list = new List();
+            int targetLength = 0;
+            list.Clear();
+            int actualLength = list.Count;
+            Assert.AreEqual(targetLength, actualLength);
+        }
     }
 }
