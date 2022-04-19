@@ -174,5 +174,11 @@ namespace MyList
             }
             return targetInd;
         }
+        public void Clear()
+        {
+            Head = null;
+            Tail = null;
+            Count = 0;
+        }
     }
 }
