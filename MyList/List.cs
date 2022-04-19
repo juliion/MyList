@@ -157,5 +157,22 @@ namespace MyList
             }
             return targetInd;
         }
+        public int FindLast(char target)
+        {
+            int targetInd = -1;
+            var current = Tail;
+            int i = Count - 1;
+            while (current != null)
+            {
+                if (Get(i) == target)
+                {
+                    targetInd = i;
+                    break;
+                }
+                current = current.Prev;
+                i--;
+            }
+            return targetInd;
+        }
     }
 }
