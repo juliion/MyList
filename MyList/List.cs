@@ -180,5 +180,14 @@ namespace MyList
             Tail = null;
             Count = 0;
         }
+        public void Extend(List elements)
+        {
+            var current = elements.Head;
+            while (current != null)
+            {
+                AddLast(current.Data);
+                current = current.Next;
+            }
+        }
     }
 }
