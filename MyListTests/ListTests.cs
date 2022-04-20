@@ -372,5 +372,68 @@ namespace MyListTests
             int actualLength = list.Count;
             Assert.AreEqual(targetLength, actualLength);
         }
+        [TestMethod]
+        public void Extend_ExtendingListWithAnotherList_IncreaseLengthAddingNewElem()
+        {
+            List expandingList = new List();
+            char firstElemExL = 'q';
+            char secondElemExL = 'w';
+            char thirdElemExL = 'y';
+            expandingList.AddLast(firstElemExL);
+            expandingList.AddLast(secondElemExL);
+            expandingList.AddLast(thirdElemExL);
+            List list = new List();
+            char firstElemL = 'e';
+            char secondElemL = 'r';
+            char thirdElemL = 't';
+            list.AddLast(firstElemL);
+            list.AddLast(secondElemL);
+            list.AddLast(thirdElemL);
+            int targetLength = 6;
+            expandingList.Extend(list);
+            int actualLength = expandingList.Count;
+            Assert.AreEqual(targetLength, actualLength);
+            Assert.AreEqual(firstElemL, expandingList.Get(3));
+            Assert.AreEqual(secondElemL, expandingList.Get(4));
+            Assert.AreEqual(thirdElemL, expandingList.Get(5));
+        }
+        [TestMethod]
+        public void Extend_ChangeListThatWasUsedForExtension_NotAffectExtendedList()
+        {
+            List expandingList = new List();
+            char firstElemExL = 'q';
+            char secondElemExL = 'w';
+            char thirdElemExL = 'y';
+            expandingList.AddLast(firstElemExL);
+            expandingList.AddLast(secondElemExL);
+            expandingList.AddLast(thirdElemExL);
+            List list = new List();
+            char firstElemL = 'e';
+            char secondElemL = 'r';
+            char thirdElemL = 't';
+            list.AddLast(firstElemL);
+            list.AddLast(secondElemL);
+            list.AddLast(thirdElemL);
+            int targetLength = 6;
+            expandingList.Extend(list);
+            list.Reverse();
+            list.RemoveAt(1);
+            list.AddLast('n');
+            int actualLength = expandingList.Count;
+            Assert.AreEqual(targetLength, actualLength);
+            Assert.AreEqual(firstElemL, expandingList.Get(3));
+            Assert.AreEqual(secondElemL, expandingList.Get(4));
+            Assert.AreEqual(thirdElemL, expandingList.Get(5));
+        }
+        [TestMethod]
+        public void Extend_ExtendEmptyListWithEmptyList_EmptyList()
+        {
+            List expandingList = new List();
+            List list = new List();
+            int targetLength = 0;
+            expandingList.Extend(list);
+            int actualLength = expandingList.Count;
+            Assert.AreEqual(targetLength, actualLength);
+        }
     }
 }
