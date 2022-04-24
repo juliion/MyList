@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyList;
 
 namespace MyListTests
@@ -50,6 +51,48 @@ namespace MyListTests
             Assert.AreEqual(secondElement, gottenSecondElement);
         }
         [TestMethod]
+        public void Get_GetElementAtNegativeIndex_ThrowsException()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'r';
+            char thirdElement = 't';
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            int ind = -1;
+            try
+            {
+                char gottenSecondElement = list.Get(ind);
+                Assert.Fail("An exception should have been thrown");
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual("Wrong index", e.Message);
+            }
+        }
+        [TestMethod]
+        public void Get_GetElementAtIndexGreaterIndexLastElem_ThrowsException()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'r';
+            char thirdElement = 't';
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            int ind = 3;
+            try
+            {
+                char gottenSecondElement = list.Get(ind);
+                Assert.Fail("An exception should have been thrown");
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual("Wrong index", e.Message);
+            }
+        }
+        [TestMethod]
         public void InsertAt_InsertInMiddle_ElemInsertedAtIndexInMiddle()
         {
             List list = new List();
@@ -87,12 +130,56 @@ namespace MyListTests
             char secondElement = 'r';
             char thirdElement = 't';
             char insElem = 'i';
-            int insInd = 2;
+            int insInd = 3;
             list.AddLast(firstElement);
             list.AddLast(secondElement);
             list.AddLast(thirdElement);
             list.InsertAt(insElem, insInd);
             Assert.AreEqual(insElem, list.Get(insInd));
+        }
+        [TestMethod]
+        public void InsertAt_InsertAtNegativeIndex_ThrowsException()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'r';
+            char thirdElement = 't';
+            char insElem = 'i';
+            int insInd = -1;
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            try
+            {
+                list.InsertAt(insElem, insInd);
+                Assert.Fail("An exception should have been thrown");
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual("Wrong index", e.Message);
+            }
+        }
+        [TestMethod]
+        public void InsertAt_InsertAtIndexGreaterLength_ThrowsException()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'r';
+            char thirdElement = 't';
+            char insElem = 'i';
+            int insInd = 4;
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            try
+            {
+                list.InsertAt(insElem, insInd);
+                Assert.Fail("An exception should have been thrown");
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual("Wrong index", e.Message);
+            }
         }
         [TestMethod]
         public void RemoveAt_RemoveFromEnd_ReduceLengthReturnRemElem()
@@ -163,6 +250,48 @@ namespace MyListTests
             int actualLength = list.Count;
             Assert.AreEqual(expectedLength, actualLength);
             Assert.AreEqual(element, remElem);
+        }
+        [TestMethod]
+        public void RemoveAt_RemoveAtNegativeIndex_ThrowsException()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'r';
+            char thirdElement = 't';
+            int ind = -1;
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            try
+            {
+                list.RemoveAt(ind);
+                Assert.Fail("An exception should have been thrown");
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual("Wrong index", e.Message);
+            }
+        }
+        [TestMethod]
+        public void RemoveAt_RemoveAtIndexGreaterIndexLastElem_ThrowsException()
+        {
+            List list = new List();
+            char firstElement = 'e';
+            char secondElement = 'r';
+            char thirdElement = 't';
+            int ind = 3;
+            list.AddLast(firstElement);
+            list.AddLast(secondElement);
+            list.AddLast(thirdElement);
+            try
+            {
+                list.RemoveAt(ind);
+                Assert.Fail("An exception should have been thrown");
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual("Wrong index", e.Message);
+            }
         }
         [TestMethod]
         public void RemoveAll_RemoveAllEntriesElem_ReduceLengthRemElem()
