@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 namespace MyList
 {
     public class List
@@ -25,7 +25,9 @@ namespace MyList
         }
         public void InsertAt(char val, int ind)
         {
-            if (ind == Count + 1)
+            if (ind < 0 || ind > Count)
+                throw new Exception("Wrong index");
+            if (ind == Count)
                 AddLast(val);
             else if (ind == 0)
             {
@@ -70,6 +72,8 @@ namespace MyList
         }
         public char Get(int ind)
         {
+            if (ind < 0 || ind >= Count)
+                throw new Exception("Wrong index");
             int i = 0;
             var target = Head;
             while (i != ind)
@@ -81,6 +85,8 @@ namespace MyList
         }
         public char RemoveAt(int ind)
         {
+            if (ind < 0 || ind >= Count)
+                throw new Exception("Wrong index");
             int i = 0;
             var del = Head;
             while (i != ind)
