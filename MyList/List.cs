@@ -195,5 +195,16 @@ namespace MyList
                 current = current.Next;
             }
         }
+        public void PrintForward()
+        {
+            var cur = Head;
+            while (cur != null)
+            {
+                Console.Write($"{cur.Data} ");
+                cur = cur.Next;
+            }
+
+            Console.WriteLine();
+        }
     }
 }
