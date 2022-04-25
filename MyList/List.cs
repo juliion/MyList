@@ -3,8 +3,8 @@ namespace MyList
 {
     public class List
     {
-        public Node Head { get; private set; }
-        public Node Tail { get; private set; }
+        private Node _head;
+        private Node _tail;
         public int Count { get; private set; }
         public void AddLast(char val)
         {
@@ -13,12 +13,12 @@ namespace MyList
                 Data = val 
             };
             if (Count == 0)
-                Head = Tail = tmp;
+                _head = _tail = tmp;
             else
             {
-                Tail.Next = tmp;
-                tmp.Prev = Tail;
-                Tail = tmp;
+                _tail.Next = tmp;
+                tmp.Prev = _tail;
+                _tail = tmp;
             }
 
             Count++;
@@ -35,22 +35,22 @@ namespace MyList
                 { 
                     Data = val
                 };
-                tmp.Next = Head;
+                tmp.Next = _head;
 
                 if (Count != 0)
-                    Head.Prev = tmp;
+                    _head.Prev = tmp;
 
                 if (Count == 0)
-                    Head = Tail = tmp;
+                    _head = _tail = tmp;
                 else
-                    Head = tmp;
+                    _head = tmp;
 
                 Count++;
             }
             else
             {
                 int i = 0;
-                var ins = Head;
+                var ins = _head;
                 while (i < ind)
                 {
                     ins = ins.Next;
@@ -75,7 +75,7 @@ namespace MyList
             if (ind < 0 || ind >= Count)
                 throw new Exception("Wrong index");
             int i = 0;
-            var target = Head;
+            var target = _head;
             while (i != ind)
             {
                 target = target.Next;
@@ -88,7 +88,7 @@ namespace MyList
             if (ind < 0 || ind >= Count)
                 throw new Exception("Wrong index");
             int i = 0;
-            var del = Head;
+            var del = _head;
             while (i != ind)
             {
                 del = del.Next;
@@ -103,9 +103,9 @@ namespace MyList
             if (nextNode != null && Count != 1)
                 nextNode.Prev = prevNode;
             if (ind == 0)
-                Head = nextNode;
+                _head = nextNode;
             if (ind == Count - 1)
-                Tail = prevNode;
+                _tail = prevNode;
 
             Count--;
             return del.Data;
@@ -113,7 +113,7 @@ namespace MyList
         public void RemoveAll(char data)
         {
             int i = 0;
-            var current = Head;
+            var current = _head;
             while (current != null)
             {
                 if (current.Data == data)
@@ -128,7 +128,7 @@ namespace MyList
         public List Clone()
         {
             List cloneList = new List();
-            var current = Head;
+            var current = _head;
             while (current != null)
             {
                 cloneList.AddLast(current.Data);
@@ -138,7 +138,7 @@ namespace MyList
         }
         public void Reverse()
         {
-            var current = Head;
+            var current = _head;
             for (int i = 0, j = Count - 1; i < j; i++)
             {
                 char temp = Get(j);
@@ -149,7 +149,7 @@ namespace MyList
         public int FindFirst(char target)
         {
             int targetInd = -1;
-            var current = Head;
+            var current = _head;
             int i = 0;
             while (current != null)
             {
@@ -166,7 +166,7 @@ namespace MyList
         public int FindLast(char target)
         {
             int targetInd = -1;
-            var current = Tail;
+            var current = _tail;
             int i = Count - 1;
             while (current != null)
             {
@@ -182,13 +182,13 @@ namespace MyList
         }
         public void Clear()
         {
-            Head = null;
-            Tail = null;
+            _head = null;
+            _tail = null;
             Count = 0;
         }
         public void Extend(List elements)
         {
-            var current = elements.Head;
+            var current = elements._head;
             while (current != null)
             {
                 AddLast(current.Data);
@@ -197,7 +197,7 @@ namespace MyList
         }
         public void PrintForward()
         {
-            var cur = Head;
+            var cur = _head;
             while (cur != null)
             {
                 Console.Write($"{cur.Data} ");

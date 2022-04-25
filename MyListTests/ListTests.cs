@@ -21,7 +21,7 @@ namespace MyListTests
             List list = new List();
             char element = 'e';
             list.AddLast(element);
-            char lastElement = list.Tail.Data;
+            char lastElement = list.Get(0);
             Assert.AreEqual(element, lastElement);
         }
         [TestMethod]
